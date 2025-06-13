@@ -35,11 +35,21 @@ public class MCEnginePremiumApiSQLite implements IMCEnginePremiumApiDB {
         }
     }
 
+    /**
+     * Returns the current SQLite database connection.
+     *
+     * @return active SQLite connection
+     */
     @Override
     public Connection getConnection() {
         return connection;
     }
 
+    /**
+     * Creates a premium rank table for the specified rank type if it does not exist.
+     *
+     * @param rankType Type of rank (e.g., vip, vvip)
+     */
     @Override
     public void createPremiumRank(String rankType) {
         try (Statement stmt = connection.createStatement()) {
@@ -54,6 +64,13 @@ public class MCEnginePremiumApiSQLite implements IMCEnginePremiumApiDB {
         }
     }
 
+    /**
+     * Retrieves the rank of a player for the specified rank type from the database.
+     *
+     * @param uuid     Player UUID
+     * @param rankType Rank type (e.g., vip, vvip)
+     * @return Integer rank value, or -1 if not found
+     */
     @Override
     public int getPremiumRank(String uuid, String rankType) {
         String query = String.format("SELECT rank FROM premium_rank_%s WHERE uuid = ?", rankType.toLowerCase());
@@ -69,6 +86,9 @@ public class MCEnginePremiumApiSQLite implements IMCEnginePremiumApiDB {
         return -1; // not found
     }
 
+    /**
+     * Closes the SQLite database connection if open.
+     */
     @Override
     public void disConnection() {
         try {
