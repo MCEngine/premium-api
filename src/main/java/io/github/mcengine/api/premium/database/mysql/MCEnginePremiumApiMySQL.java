@@ -36,9 +36,10 @@ public class MCEnginePremiumApiMySQL implements IMCEnginePremiumApiDB {
         String database = plugin.getConfig().getString("database.mysql.database", "mcengine");
         String user = plugin.getConfig().getString("database.mysql.user", "root");
         String password = plugin.getConfig().getString("database.mysql.password", "");
+        String ssl = plugin.getConfig().getString("database.mysql.ssl", "false");
 
         try {
-            String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?useSSL=false";
+            String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?useSSL=" + ssl;
             connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             plugin.getLogger().severe("Failed to connect to MySQL: " + e.getMessage());
