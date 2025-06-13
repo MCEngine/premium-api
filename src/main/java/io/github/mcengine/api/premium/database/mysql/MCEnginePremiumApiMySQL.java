@@ -62,7 +62,7 @@ public class MCEnginePremiumApiMySQL implements IMCEnginePremiumApiDB {
     }
 
     @Override
-    public void getPremiumRank() {
+    public void getPremiumRank(String uuid, String rankType) {
         // Implementation placeholder
     }
 
