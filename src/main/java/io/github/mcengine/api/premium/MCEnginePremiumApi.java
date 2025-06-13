@@ -70,6 +70,15 @@ public class MCEnginePremiumApi {
     }
 
     /**
+     * Creates a new premium rank table for the given rank type if it doesn't exist.
+     *
+     * @param rankType Rank type to initialize (e.g., vip, vvip)
+     */
+    public void createPremiumRank(String rankType) {
+        db.createPremiumRank(rankType);
+    }
+
+    /**
      * Gets the premium rank value of the given player and rank type.
      *
      * @param uuid     Player UUID
