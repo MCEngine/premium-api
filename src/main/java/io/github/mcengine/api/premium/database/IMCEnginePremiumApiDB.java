@@ -17,7 +17,7 @@ public interface IMCEnginePremiumApiDB {
     /**
      * Creates the necessary tables or schema for storing premium rank data.
      */
-    void createPremiumRank();
+    void createPremiumRank(String rankType);
 
     /**
      * Retrieves premium rank data from the database.
