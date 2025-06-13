@@ -14,6 +14,9 @@ import java.sql.Statement;
  */
 public class MCEnginePremiumApiSQLite implements IMCEnginePremiumApiDB {
 
+    /**
+     * Active SQL database connection instance.
+     */
     private Connection connection;
 
     /**

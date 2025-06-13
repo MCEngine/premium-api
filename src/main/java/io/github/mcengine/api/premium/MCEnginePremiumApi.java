@@ -10,8 +10,19 @@ import org.bukkit.plugin.Plugin;
  */
 public class MCEnginePremiumApi {
 
+    /**
+     * Singleton instance of the Premium API.
+     */
     private static MCEnginePremiumApi instance;
+
+    /**
+     * Reference to the Bukkit plugin using this API.
+     */
     private final Plugin plugin;
+
+    /**
+     * The database implementation used for premium rank operations.
+     */
     private final IMCEnginePremiumApiDB db;
 
     /**
