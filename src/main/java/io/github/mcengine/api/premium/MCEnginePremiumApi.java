@@ -57,4 +57,15 @@ public class MCEnginePremiumApi {
     public IMCEnginePremiumApiDB getDB() {
         return db;
     }
+
+    /**
+     * Gets the premium rank value of the given player and rank type.
+     *
+     * @param uuid     Player UUID
+     * @param rankType Type of rank table (e.g. vip, vvip)
+     * @return Integer rank value, or -1 if not found
+     */
+    public int getPremiumRank(String uuid, String rankType) {
+        return db.getPremiumRank(uuid, rankType);
+    }
 }

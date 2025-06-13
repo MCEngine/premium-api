@@ -22,7 +22,7 @@ public interface IMCEnginePremiumApiDB {
     /**
      * Retrieves premium rank data from the database.
      */
-    void getPremiumRank(String uuid, String rankType);
+    int getPremiumRank(String uuid, String rankType);
 
     /**
      * Closes the current database connection.

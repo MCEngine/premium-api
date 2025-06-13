@@ -55,8 +55,18 @@ public class MCEnginePremiumApiSQLite implements IMCEnginePremiumApiDB {
     }
 
     @Override
-    public void getPremiumRank(String uuid, String rankType) {
-        // Implementation placeholder
+    public int getPremiumRank(String uuid, String rankType) {
+        String query = String.format("SELECT rank FROM premium_rank_%s WHERE uuid = ?", rankType.toLowerCase());
+        try (var pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, uuid);
+            var rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("rank");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // not found
     }
 
     @Override
