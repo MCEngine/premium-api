@@ -87,6 +87,41 @@ public class MCEnginePremiumApiSQLite implements IMCEnginePremiumApiDB {
     }
 
     /**
+     * Upgrades the rank of a user by 1. If user not exists, it inserts with rank = 1.
+     *
+     * @param uuid     Player UUID
+     * @param rankType Rank type (e.g., vip, vvip)
+     */
+    @Override
+    public void upgradePremiumRank(String uuid, String rankType) {
+        String selectQuery = String.format("SELECT rank FROM premium_rank_%s WHERE uuid = ?", rankType.toLowerCase());
+        String insertQuery = String.format("INSERT INTO premium_rank_%s (uuid, rank) VALUES (?, ?)", rankType.toLowerCase());
+        String updateQuery = String.format("UPDATE premium_rank_%s SET rank = rank + 1 WHERE uuid = ?", rankType.toLowerCase());
+
+        try (var selectStmt = connection.prepareStatement(selectQuery)) {
+            selectStmt.setString(1, uuid);
+            var rs = selectStmt.executeQuery();
+
+            if (rs.next()) {
+                // Update rank
+                try (var updateStmt = connection.prepareStatement(updateQuery)) {
+                    updateStmt.setString(1, uuid);
+                    updateStmt.executeUpdate();
+                }
+            } else {
+                // Insert new
+                try (var insertStmt = connection.prepareStatement(insertQuery)) {
+                    insertStmt.setString(1, uuid);
+                    insertStmt.setInt(2, 1);
+                    insertStmt.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Closes the SQLite database connection if open.
      */
     @Override

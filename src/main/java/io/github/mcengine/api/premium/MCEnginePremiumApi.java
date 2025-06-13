@@ -68,4 +68,14 @@ public class MCEnginePremiumApi {
     public int getPremiumRank(String uuid, String rankType) {
         return db.getPremiumRank(uuid, rankType);
     }
+
+    /**
+     * Upgrades the rank of a player by 1 for the given rank type.
+     *
+     * @param uuid     Player UUID
+     * @param rankType Rank type (e.g., vip, vvip)
+     */
+    public void upgradePremiumRank(String uuid, String rankType) {
+        db.upgradePremiumRank(uuid, rankType);
+    }
 }

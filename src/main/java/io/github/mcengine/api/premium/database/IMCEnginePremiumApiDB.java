@@ -25,6 +25,14 @@ public interface IMCEnginePremiumApiDB {
     int getPremiumRank(String uuid, String rankType);
 
     /**
+     * Upgrades the rank of a user by 1. If user not exists, it inserts with rank = 1.
+     *
+     * @param uuid     Player UUID
+     * @param rankType Rank type (e.g., vip, vvip)
+     */
+    void upgradePremiumRank(String uuid, String rankType);
+
+    /**
      * Closes the current database connection.
      */
     void disConnection();
