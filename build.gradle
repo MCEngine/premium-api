@@ -8,7 +8,7 @@ plugins {
 version = project.properties[project.name + '.version']
 group = 'io.github.mcengine'
 
-mcengineApiVersion = project.properties["mcengine-api" + '.version']
+mcengineApiVersion = findProperty('mcengine-api.version')
 
 ext {
     // User
