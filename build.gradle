@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-// Set project version using a property, defaulting to 'undefined' if not found
+// Set project version using a property
 version = project.properties[project.name + '.version']
 group = 'io.github.mcengine'
 
