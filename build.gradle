@@ -8,6 +8,8 @@ plugins {
 version = project.properties[project.name + '.version']
 group = 'io.github.mcengine'
 
+mcengineApiVersion = project.properties["mcengine-api" + '.version']
+
 ext {
     // User
     user_git_name = System.getenv('USER_GIT_NAME')
@@ -50,7 +52,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'io.github.mcengine:core-api:2025.0.8-16'
+    compileOnly "io.github.mcengine:core-api:${mcengineApiVersion}"
     compileOnly 'com.google.code.gson:gson:2.13.1'
     compileOnly 'org.spigotmc:spigot-api:1.21.7-R0.1-SNAPSHOT'
 }
